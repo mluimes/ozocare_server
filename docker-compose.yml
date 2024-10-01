@@ -1,0 +1,26 @@
+services:
+  web:
+    container_name: ozocare
+    restart: always
+    build: .
+    ports:
+      - 3000:3000
+    links:
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - ozonet
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo_data:/data/db
+    networks:
+      - ozonet  
+
+networks:
+  ozonet:
+    driver: bridge
