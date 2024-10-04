@@ -17,10 +17,13 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - ./mongo_data:/data/db
+      - mongodb_data:/data/db
     networks:
       - ozonet  
 
 networks:
   ozonet:
     driver: bridge
+
+volumes:
+  mongodb_data:
