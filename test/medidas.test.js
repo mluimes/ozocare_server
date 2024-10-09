@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const app = require('../app'); // Asegúrate de que tu archivo app.js exporta app correctamente
+const app = require('../src/app'); // Asegúrate de que tu archivo app.js exporta app correctamente
 const expect = chai.expect;
 
 chai.use(chaiHttp);

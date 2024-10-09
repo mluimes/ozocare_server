@@ -19,7 +19,9 @@ services:
     volumes:
       - mongodb_data:/data/db
     networks:
-      - ozonet  
+      - ozonet
+    logging:
+      driver: none
 
 networks:
   ozonet:
