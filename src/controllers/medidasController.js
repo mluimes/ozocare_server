@@ -2,14 +2,17 @@
 
 const medidasService = require('../services/medidasService');
 
-// manejan la lógica de las solicitudes HTTP y responden al cliente.
+// Controlador para manejar las solicitudes relacionadas con medidas
 const medidasController = {
     guardarMedidas: async (req, res) => {
         try {
+            // Devuelve el cuerpo recibido para depuración
+            console.log("Datos recibidos:", req.body);
+            // Llama al servicio para guardar las medidas
             const medidas = await medidasService.guardarMedidas(req.body);
             res.status(201).json(medidas);
-        } catch(err) {
-            res.status(400).json({message: err.message });
+        } catch (err) {
+            res.status(400).json({ message: err.message });
         }
     },
     obtenerMedidas: async (req, res) => {
@@ -22,4 +25,4 @@ const medidasController = {
     }
 }
 
-module.exports = medidasController;``
+module.exports = medidasController;
