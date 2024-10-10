@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: API de Medidas
+  description: API para gestionar las medidas de temperatura y concentración de gas.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Servidor local para la API de medidas
+
+paths:
+  /medidas:
+    get:
+      summary: Obtener todas las medidas
+      description: Devuelve una lista de todas las medidas almacenadas.
+      responses:
+        '200':
+          description: Lista de medidas obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Medida'
+        '500':
+          description: Error en el servidor al obtener las medidas
+    post:
+      summary: Crear una nueva medida
+      description: Crea y almacena una nueva medida en la base de datos.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NuevaMedida'
+      responses:
+        '201':
+          description: Medida creada exitosamente
+        '400':
+          description: Error al crear la medida
+
+components:
+  schemas:
+    Medida:
+      type: object
+      properties:
+        temperatura:
+          type: number
+          description: La temperatura medida
+        concentracionGas:
+          type: number
+          description: La concentración de gas medida
+        fecha:
+          type: string
+          format: date-time
+          description: Fecha y hora en que se registró la medida
+    NuevaMedida:
+      type: object
+      required:
+        - temperatura
+        - concentracionGas
+      properties:
+        temperatura:
+          type: number
+          description: La temperatura medida
+        concentracionGas:
+          type: number
+          description: La concentración de gas medida
